@@ -146,3 +146,130 @@ This project demonstrates how unsupervised learning can uncover hidden patterns 
 * Evaluating clustering stability
 * Deploying results in a recommendation system
 
+
+
+
+## 1. Data Preparation
+
+* Selected **numerical features only**
+* Handled missing values
+* Applied **StandardScaler** to normalize feature scales (essential for distance-based models)
+
+---
+
+## 2. K-Means Clustering
+
+### a) Elbow Method
+
+* Tested **k = 2 to 5**
+* Inertia decreases sharply up to **k = 3**, then flattens
+  ✅ **Optimal k ≈ 3**
+
+### b) Silhouette Score
+
+* Highest silhouette score also occurs at **k = 3**
+* Confirms good separation and compact clusters
+
+**Conclusion:**
+👉 **K-Means with 3 clusters** provides the best balance between cohesion and separation.
+
+---
+
+## 3. Hierarchical Clustering (Conceptual Analysis)
+
+* Agglomerative (Ward linkage) approach
+* Useful for understanding **hierarchical relationships between songs**
+* Helps identify how smaller clusters merge into larger ones
+
+**Use case:**
+✔ Exploratory analysis
+✔ Understanding similarity structure
+
+---
+
+## 4. DBSCAN
+
+* Density-based clustering
+* Identifies:
+
+  * Core clusters
+  * **Noise / outliers** (songs with unusual audio patterns)
+* Advantage:
+
+  * No need to specify number of clusters
+  * Handles irregular cluster shapes
+
+**Limitation:**
+Sensitive to `eps` and `min_samples`
+
+---
+
+## 5. Gaussian Mixture Model (GMM)
+
+* Probabilistic clustering
+* Each song assigned a **probability of belonging** to each cluster
+* Suitable when clusters overlap
+
+**Advantage:**
+✔ More flexible than K-Means
+✔ Captures uncertainty in cluster membership
+
+---
+
+## 6. Dimensionality Reduction & Visualization
+
+### a) PCA (Principal Component Analysis)
+
+* Reduced data to **2 dimensions**
+* Preserved maximum variance
+* Useful for:
+
+  * Visual inspection
+  * Improving clustering efficiency
+
+### b) t-SNE
+
+* Non-linear dimensionality reduction
+* Reveals **local structure and natural groupings**
+* Ideal for **visual interpretation** of clusters
+
+---
+
+## 7. Cluster Distribution & Interpretability
+
+* Compared cluster sizes across:
+
+  * K-Means
+  * DBSCAN
+  * GMM
+* Ensured clusters are:
+
+  * Balanced
+  * Meaningful
+  * Not dominated by noise
+
+---
+
+## 8. Key Takeaways
+
+| Model        | Strength              | Best Use                |
+| ------------ | --------------------- | ----------------------- |
+| K-Means      | Simple, fast          | Well-separated clusters |
+| Hierarchical | Interpretability      | Exploratory analysis    |
+| DBSCAN       | Noise detection       | Outlier-heavy data      |
+| GMM          | Probabilistic         | Overlapping clusters    |
+| PCA          | Variance preservation | Visualization           |
+| t-SNE        | Local structure       | Cluster visualization   |
+
+---
+
+## Final Recommendation
+
+✔ Use **K-Means (k = 3)** as the primary clustering model
+✔ Use **GMM** for probabilistic insights
+✔ Use **PCA + t-SNE** for visualization and interpretation
+
+
+<img width="580" height="455" alt="8ce92d26-148c-4c5b-a3a7-1854b9076c3b" src="https://github.com/user-attachments/assets/5a104c1e-5a9b-47d2-9abf-91fa385b5d28" />
+<img width="584" height="455" alt="2d530679-6e81-427c-b902-d4059dd33301" src="https://github.com/user-attachments/assets/2d1aff80-0f2c-4139-bcb3-8f0edf334d6e" />
+
